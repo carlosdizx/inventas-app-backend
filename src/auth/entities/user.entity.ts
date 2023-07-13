@@ -1,5 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  JoinColumn,
+} from 'typeorm';
 import { Roles } from '../enums/role.enum';
+import UserProperties from './user.properties.entity';
 
 @Entity('users')
 export default class User {
@@ -21,4 +28,8 @@ export default class User {
     default: [Roles.CASHIER],
   })
   roles: Roles[];
+
+  @OneToOne(() => UserProperties, (properties) => properties.user)
+  @JoinColumn()
+  properties: UserProperties;
 }
