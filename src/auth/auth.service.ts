@@ -3,11 +3,13 @@ import { InjectRepository } from '@nestjs/typeorm';
 import User from './entities/user.entity';
 import { Repository } from 'typeorm';
 import CreateUserDto from './dto/create.user.dto';
+import ErrorHandler from '../common/utils/error-handler';
 
 @Injectable()
 export default class AuthService {
   constructor(
     @InjectRepository(User) private readonly repository: Repository<User>,
+    private readonly errorHandler: ErrorHandler,
   ) {}
 
   public registerUser = async (createUserDto: CreateUserDto) => {
@@ -19,7 +21,7 @@ export default class AuthService {
       delete user.password;
       return user;
     } catch (error) {
-      console.log('Failed to register user');
+      this.errorHandler.handleException(error);
     }
   };
 }
