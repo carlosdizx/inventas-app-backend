@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import JoiValidation from './common/env.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -19,7 +18,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    AuthModule,
   ],
   controllers: [],
   providers: [],
