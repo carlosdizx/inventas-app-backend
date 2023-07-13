@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import User from './entities/user.entity';
 import { Repository } from 'typeorm';
 import CreateUserDto from './dto/create.user.dto';
-import ErrorHandlerService from '../common/modules/error-handler/error.handler.service';
+import ErrorHandlerService from '../common/utils/error.handler.service';
 
 const nameService = 'AuthService';
 @Injectable()

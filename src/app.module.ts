@@ -3,7 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import JoiValidation from './common/env.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
-import { ErrorHandlerModule } from './common/modules/error-handler/error.handler.module';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -21,7 +21,7 @@ import { ErrorHandlerModule } from './common/modules/error-handler/error.handler
       synchronize: true,
     }),
     AuthModule,
-    ErrorHandlerModule,
+    CommonModule,
   ],
   controllers: [],
   providers: [],
