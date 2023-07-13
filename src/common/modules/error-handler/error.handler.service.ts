@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 
 @Injectable()
-export default class ErrorHandler {
+export default class ErrorHandlerService {
   private readonly logger = new Logger();
   public handleException = (error: any, context = 'AppServiceFailed') => {
     if (error.code === '23505') throw new BadRequestException(error.detail);
