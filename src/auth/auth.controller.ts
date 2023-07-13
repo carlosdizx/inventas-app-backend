@@ -1,7 +1,10 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import AuthService from './auth.service';
 import CreateUserDto from './dto/create.user.dto';
 import LoginUserDto from './dto/login.user.dto';
+import getUser from './decorators/get-user.decorator';
+import User from './entities/user.entity';
+import Auth from './decorators/auth.decorator';
 
 @Controller('auth/')
 export class AuthController {
@@ -15,5 +18,14 @@ export class AuthController {
   @Post('singIn')
   singIn(@Body() loginUserDto: LoginUserDto) {
     return this.authService.loginUser(loginUserDto);
+  }
+
+  @Get('testAuth')
+  @Auth()
+  testAuth() {
+    return {
+      ok: true,
+      message: "That's great",
+    };
   }
 }
