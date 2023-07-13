@@ -22,10 +22,11 @@ export class AuthController {
 
   @Get('testAuth')
   @Auth()
-  testAuth() {
+  testAuth(@getUser() user: User) {
     return {
       ok: true,
       message: "That's great",
+      user,
     };
   }
 }
