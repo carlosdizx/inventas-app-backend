@@ -8,12 +8,15 @@ import EncryptService from '../common/utils/encrypt.service';
 import LoginUserDto from './dto/login.user.dto';
 import { JwtService } from '@nestjs/jwt';
 import JwtPayload from './interfaces/jwt-payload.interface';
+import UserProperties from './entities/user.properties.entity';
 
 const nameService = 'AuthService';
 @Injectable()
 export default class AuthService {
   constructor(
     @InjectRepository(User) private readonly repository: Repository<User>,
+    @InjectRepository(UserProperties)
+    private readonly repositoryUserProperties: Repository<UserProperties>,
     private readonly errorHandlerService: ErrorHandlerService,
     private readonly encryptService: EncryptService,
     private readonly jwtService: JwtService,
