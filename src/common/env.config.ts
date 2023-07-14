@@ -10,6 +10,7 @@ const JoiValidation = Joi.object({
   DB_USERNAME: Joi.string().default('postgres'),
   DB_PASSWORD: Joi.string().default('postgres'),
   DB_NAME: Joi.required(),
+  JWT_SECRET: Joi.required(),
 });
 
 export default JoiValidation;
