@@ -30,9 +30,24 @@ export default class AuthService {
           createUserDto.password,
         ),
       });
+
       await this.repository.save(user);
+
+      const userProperties: UserProperties =
+        this.repositoryUserProperties.create({
+          ...createUserDto,
+          user,
+        });
+
+      await this.repositoryUserProperties.save(userProperties);
+
       delete user.password;
-      return { ...user, token: this.generateJWT({ id: user.id }) };
+      delete userProperties.user;
+      return {
+        ...user,
+        token: this.generateJWT({ id: user.id }),
+        ...userProperties,
+      };
     } catch (error) {
       this.errorHandlerService.handleException(error, nameService);
     }
